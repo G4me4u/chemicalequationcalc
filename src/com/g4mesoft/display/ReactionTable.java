@@ -66,23 +66,37 @@ public class ReactionTable extends JTable {
 				rowVector.set(c, null);
 		}
 		
-		model.setColumnCount(numReactants + numProducts + 1);
+		int numColumns = numReactants + numProducts + 1;
+		if (numProducts > 0)
+			numColumns++;
+		
+		model.setColumnCount(numColumns);
 
 		int c = 0;
+		leadingColumn(c++);
+		
 		for (int i = 0; i < numReactants; i++, c++) {
 			MoleculeEntry entry = reactants.get(i);
-			updateColumn(entry, c);
+			moleculeColumn(entry, c);
 		}
 		
-		model.setValueAt(SymbolManager.fromAlias(reaction.getSeperator()), 0, c++);
-		
-		for (int i = 0; i < numProducts; i++, c++) {
-			MoleculeEntry entry = products.get(i);
-			updateColumn(entry, c);
+		if (numProducts > 0) {
+			model.setValueAt(SymbolManager.fromAlias(reaction.getSeperator()), 0, c++);
+			
+			for (int i = 0; i < numProducts; i++, c++) {
+				MoleculeEntry entry = products.get(i);
+				moleculeColumn(entry, c);
+			}
 		}
 	}
 	
-	private void updateColumn(MoleculeEntry entry, int column) {
+	private void leadingColumn(int column) {
+		model.setValueAt("M_w", 1, column);
+		model.setValueAt("m", 2, column);
+		model.setValueAt("n", 3, column);
+	}
+	
+	private void moleculeColumn(MoleculeEntry entry, int column) {
 		model.setValueAt(entry.toString(), 0, column);
 		
 		double mass = entry.molecule.calcMolarMass();

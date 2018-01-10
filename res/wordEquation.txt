@@ -1,0 +1,7 @@
+<!--[if gte msEquation 12]>
+<m:oMathPara>
+<m:oMath>
+%s
+</m:oMath>
+</m:oMathPara>
+<![endif]-->

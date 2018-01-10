@@ -1,0 +1,13 @@
+<m:sSub>
+<m:sSubPr>
+<span style='font-family:"Cambria Math",serif;mso-ascii-font-family:"Cambria Math"; mso-hansi-font-family:"Cambria Math";mso-ansi-language:EN-US;font-style: italic;mso-bidi-font-style:normal'>
+<m:ctrlPr></m:ctrlPr>
+</span>
+</m:sSubPr>
+<m:e>
+%s
+</m:e>
+<m:sub>
+%s
+</m:sub>
+</m:sSub>
